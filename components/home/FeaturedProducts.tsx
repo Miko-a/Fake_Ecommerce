@@ -4,7 +4,7 @@ import { useProducts } from "@/hooks/useProducts"
 import { ProductCard } from "@/components/product/ProductCard"
 import { ProductCardSkeleton } from "@/components/product/ProductCardSkeleton"
 import Link from "next/link"
-import { ArrowRight } from "lucide-react"
+// import { ArrowRight } from "lucide-react"
 
 const FEATURED_COUNT = 6
 
@@ -41,7 +41,7 @@ export function FeaturedProducts() {
           className="inline-flex items-center gap-1.5 text-sm font-medium text-[var(--primary)] transition hover:underline"
         >
           View all
-          <ArrowRight className="h-4 w-4" />
+          {/* <ArrowRight className="h-4 w-4" /> */}
         </Link>
       </div>
       <div className="grid grid-cols-2 gap-4 sm:gap-6 md:grid-cols-3">
