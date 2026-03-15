@@ -2,6 +2,7 @@
 
 import Link from "next/link"
 import { useCart } from "@/context/CartContext"
+import { CircleUser } from "lucide-react"
 
 export function Navbar() {
   const { items } = useCart()
@@ -52,6 +53,7 @@ export function Navbar() {
             Cart ({items.length})
           </Link>
 
+          <Link href="/profile"><CircleUser className="h-5 w-5"/></Link>
         </div>
       </div>
     </nav>

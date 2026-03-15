@@ -7,7 +7,7 @@ export default function CartPage() {
 
   return (
     <div>
-      <h1 className="text-2xl font-bold">Cart</h1>
+      <h1 className="text-2xl font-bold text-white">Cart</h1>
 
       {items.map((item) => (
         <div key={item.id} className="flex justify-between border p-4 mt-2">
