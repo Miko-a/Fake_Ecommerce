@@ -1,16 +1,16 @@
 @import "tailwindcss";
 
-/* :root {
-  --background: #ffffff;
-  --foreground: #171717;
-} */
-
 :root {
-  --primary: #0f52ba;
-  --secondary: #89cff0;
-  --bg: #f6f7f9;
+  --background: #faf8f5;
+  --foreground: #1c1917;
+  --primary: #0d5c63;
+  --primary-hover: #0a4a50;
+  --secondary: #e8f4f4;
+  --muted: #78716c;
+  --border: #e7e5e4;
+  --card: #ffffff;
+  --card-hover: #f5f5f4;
 }
-
 
 @theme inline {
   --color-background: var(--background);
@@ -21,12 +21,37 @@
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #0f0f0f;
-    --foreground: #ededed;
+    --background: #1c1917;
+    --foreground: #faf8f5;
+    --primary: #2dd4bf;
+    --primary-hover: #5eead4;
+    --secondary: #134e4a;
+    --muted: #a8a29e;
+    --border: #292524;
+    --card: #292524;
+    --card-hover: #44403c;
   }
 }
 
 body {
   background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
+  color: var(--foreground);
+  font-family: var(--font-geist-sans), system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Subtle grain texture for depth */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
+  pointer-events: none;
+  z-index: 0;
+}
+
+@media (prefers-color-scheme: dark) {
+  body::before {
+    opacity: 0.05;
+  }
 }

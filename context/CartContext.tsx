@@ -15,7 +15,15 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
   const [items, setItems] = useState<CartItem[]>([])
 
   const addItem = (item: CartItem) => {
-    setItems((prev) => [...prev, item])
+    setItems((prev) => {
+      const existing = prev.find((i) => i.id === item.id)
+      if (existing) {
+        return prev.map((i) =>
+          i.id === item.id ? { ...i, quantity: i.quantity + item.quantity } : i
+        )
+      }
+      return [...prev, item]
+    })
   }
 
   const removeItem = (id: number) => {

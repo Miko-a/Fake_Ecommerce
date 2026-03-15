@@ -2,20 +2,18 @@
 
 import React from "react"
 
-export function Button({ children, ...props }: React.ButtonHTMLAttributes<HTMLButtonElement>) {
+export function Button({
+  children,
+  className = "",
+  ...props
+}: React.ButtonHTMLAttributes<HTMLButtonElement>) {
   return (
     <button
       {...props}
-      className="
-      px-5 py-2
-      rounded-lg
-      font-medium
-      text-white
-      bg-(--primary)
-      hover:brightness-110
-      transition
-      shadow-sm
-      "
+      className={
+        "rounded-xl bg-[var(--primary)] px-5 py-2.5 font-medium text-white shadow-sm transition hover:bg-[var(--primary-hover)] disabled:opacity-50 " +
+        className
+      }
     >
       {children}
     </button>

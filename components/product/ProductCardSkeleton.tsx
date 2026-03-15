@@ -2,18 +2,10 @@
 
 export function ProductCardSkeleton() {
   return (
-    <div
-      className="
-      bg-white
-      rounded-xl
-      border
-      p-4
-      animate-pulse
-      "
-    >
-      <div className="h-40 bg-gray-200 rounded-md mb-3" />
-      <div className="h-4 bg-gray-200 mb-2 rounded" />
-      <div className="h-4 bg-gray-200 w-1/2 rounded" />
+    <div className="overflow-hidden rounded-2xl border border-[var(--border)] bg-[var(--card)] p-4">
+      <div className="aspect-square animate-pulse rounded-xl bg-[var(--card-hover)]" />
+      <div className="mt-4 h-4 w-3/4 animate-pulse rounded bg-[var(--card-hover)]" />
+      <div className="mt-2 h-4 w-1/2 animate-pulse rounded bg-[var(--card-hover)]" />
     </div>
   )
 }
