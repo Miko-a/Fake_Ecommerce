@@ -17,9 +17,17 @@ export default function CategoriesPage() {
 
   return (
     <div className="mx-auto max-w-4xl">
-      <h1 className="mb-6 text-2xl font-bold text-[var(--foreground)]">
-        Categories
-      </h1>
+      <nav className="mb-2 flex items-center gap-2 text-sm text-[var(--muted)]">
+        <Link
+          href="/products"
+          className="rounded-lg px-1.5 py-0.5 transition hover:bg-[var(--card-hover)] hover:text-[var(--foreground)]"
+        >
+          Products
+        </Link>
+        <span>/</span>
+        <span className="text-[var(--foreground)]">Categories</span>
+      </nav>
+      <h1 className="mb-6 text-2xl font-bold text-[var(--foreground)]">Categories</h1>
       <ul className="grid gap-3 sm:grid-cols-2">
         {data?.map((c) => (
           <li key={c}>
