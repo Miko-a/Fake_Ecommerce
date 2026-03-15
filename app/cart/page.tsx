@@ -3,10 +3,10 @@
 import { useCart } from "@/context/CartContext"
 import Image from "next/image"
 import Link from "next/link"
-import { Trash2 } from "lucide-react"
+import { Trash2, Minus, Plus } from "lucide-react"
 
 export default function CartPage() {
-  const { items, removeItem } = useCart()
+  const { items, removeItem, updateQuantity } = useCart()
 
   const total = items.reduce((sum, item) => sum + item.price * item.quantity, 0)
 
@@ -48,11 +48,30 @@ export default function CartPage() {
             <div className="min-w-0 flex-1">
               <p className="font-medium text-[var(--foreground)]">{item.title}</p>
               <p className="text-sm text-[var(--muted)]">
-                ${item.price} × {item.quantity}
+                ${item.price} each
               </p>
             </div>
-            <div className="flex items-center justify-between sm:justify-end gap-4">
-              <p className="font-bold text-[var(--primary)]">
+            <div className="flex flex-wrap items-center gap-3">
+              <div className="flex items-center rounded-lg border border-[var(--border)] bg-[var(--background)]">
+                <button
+                  onClick={() => updateQuantity(item.id, item.quantity - 1)}
+                  className="rounded-l-lg p-2 text-[var(--muted)] transition hover:bg-[var(--card-hover)] hover:text-[var(--foreground)]"
+                  aria-label="Decrease quantity"
+                >
+                  <Minus className="h-4 w-4" />
+                </button>
+                <span className="min-w-[2rem] py-1 text-center text-sm font-medium text-[var(--foreground)]">
+                  {item.quantity}
+                </span>
+                <button
+                  onClick={() => updateQuantity(item.id, item.quantity + 1)}
+                  className="rounded-r-lg p-2 text-[var(--muted)] transition hover:bg-[var(--card-hover)] hover:text-[var(--foreground)]"
+                  aria-label="Increase quantity"
+                >
+                  <Plus className="h-4 w-4" />
+                </button>
+              </div>
+              <p className="min-w-[4rem] text-right font-bold text-[var(--primary)]">
                 ${(item.price * item.quantity).toFixed(2)}
               </p>
               <button
@@ -70,9 +89,12 @@ export default function CartPage() {
         <p className="text-lg font-bold text-[var(--foreground)]">
           Total: <span className="text-[var(--primary)]">${total.toFixed(2)}</span>
         </p>
-        <button className="rounded-xl bg-[var(--primary)] px-6 py-3 font-semibold text-white transition hover:bg-[var(--primary-hover)]">
+        <Link
+          href="/checkout"
+          className="rounded-xl bg-[var(--primary)] px-6 py-3 font-semibold text-white transition hover:bg-[var(--primary-hover)]"
+        >
           Checkout
-        </button>
+        </Link>
       </div>
     </div>
   )
