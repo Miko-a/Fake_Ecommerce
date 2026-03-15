@@ -1,11 +1,14 @@
 "use client"
 
+import { useSearchParams } from "next/navigation"
 import { useProducts } from "@/hooks/useProducts"
 import { ProductCard } from "@/components/product/ProductCard"
 import { ProductCardSkeleton } from "@/components/product/ProductCardSkeleton"
 
 export default function ProductsPage() {
-  const { data, isLoading } = useProducts()
+  const searchParams = useSearchParams()
+  const category = searchParams.get("category") ?? undefined
+  const { data, isLoading } = useProducts(category)
 
   if (isLoading)
     return (
@@ -24,7 +27,7 @@ export default function ProductsPage() {
   return (
     <div className="mx-auto max-w-7xl">
       <h1 className="mb-6 text-2xl font-bold text-[var(--foreground)]">
-        Products
+        {category ? "Products / " + category : "Products"}
       </h1>
       <div className="grid grid-cols-2 gap-4 sm:gap-6 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">
         {data?.map((p) => (
